@@ -1,0 +1,17 @@
+.header {
+    background: #FFFFFF;
+
+}
+
+.title {
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.header__inner{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

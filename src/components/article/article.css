@@ -1,0 +1,75 @@
+.arcticle {
+    max-width: 938px;
+    width: 100%;
+    margin: 25px auto;
+    padding: 15px;
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+
+.arcticle__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.arcticle__titles {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #1890FF;
+}
+
+.arcticle__like {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+
+.titleBlog__inner {
+    display: flex;
+    align-items: center;
+}
+
+.titleUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.titleUser__inner {
+    margin-right: 12px;
+}
+
+.titleUser__name {
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+    margin: 0;
+}
+
+.titleUser__date {
+    font-size: 12px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+.arcticle__avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.arcticle__avatar img {
+    width: 100%;
+}
+
+.arcticle__text {
+    margin-top: 5px;
+}
+
