@@ -14,7 +14,7 @@ const ArticlesList = () => {
   const articlesList = useSelector(state => state.articleList.articleList)
   const loadingStatus = useSelector(state => state.articleList.loading)
   const newArrayArticList = articlesList.map((article) => {
-    return  <Article key={article.slug} {...article} />
+    return  <Article key={`${article.slug}${article.createdAt}`} {...article} />
   })
   return (
     <div className="articlesList">

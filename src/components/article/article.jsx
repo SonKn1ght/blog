@@ -28,7 +28,6 @@ const Article = ({title, description, tagList, slug, author, createdAt, favorite
   return (
     <>
 
-
       <div className="arcticle">
         <div className="arcticle__header">
           <div className="titleBlog">

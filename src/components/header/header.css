@@ -15,3 +15,30 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.userAuth {
+    display: flex;
+    align-items: center;
+}
+
+.userAuth__createArticle {
+    padding: 6px 10px;
+    background: none;
+    border: 1px solid #52C41A;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.userAuth__inner {
+    display: flex;
+    align-items: center;
+    margin: 0 27px;
+}
+
+.userAuth__image {
+    width: 46px;
+    height: 46px;
+    margin-left: 13px;
+}

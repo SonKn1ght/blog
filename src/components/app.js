@@ -1,11 +1,11 @@
 //Dependencies
-import React, {useEffect} from "react"
+import React from "react"
 import {BrowserRouter as Router, Route } from "react-router-dom"
 import {Provider} from "react-redux";
 import store from "../redux/store";
 
 //PagesComponents
-import { MainContent, Signup, Signin, ArticleOpen } from './pages'
+import { MainContent, Signup, Signin, ArticleOpen, NewArticle, ProfilePage } from './pages'
 
 
 //Style
@@ -20,6 +20,8 @@ function App() {
         <Route path='/articles/:slug' component={ArticleOpen} exact/>
         <Route path='/signup' component={Signup} exact/>
         <Route path='/signin' component={Signin} exact/>
+        <Route path='/new-article' component={NewArticle} exact/>
+        <Route path="/profile" component={ProfilePage} exact/>
       </Router>
     </Provider>
   );

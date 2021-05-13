@@ -1,6 +1,40 @@
+
 .arcticle__text--open {
     margin-top: 25px;
     font-size: 20px;
     line-height: 28px;
     color: rgba(0, 0, 0, 0.75);
+}
+
+.article__btn {
+    font-size: 14px;
+    line-height: 22px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.article__delete {
+    padding: 6px 17px;
+    color: #F5222D;
+    background: none;
+    border: 1px solid #F5222D;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.article__edit {
+    padding: 6px 19px;
+    color: #52C41A;
+    background: none;
+    border: 1px solid #52C41A;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+.arcticle__main {
+    margin-top: -30px;
 }

@@ -3,6 +3,10 @@ import { listArcticle, baseUrl} from "../api";
 
 const getOneArticle = (slug) => {
   return async (dispatch) => {
+    dispatch({
+      type:"DELETE/ONEARTICLE"
+    })
+
     fetch(`${baseUrl}${listArcticle}/${slug}`)
       .then((res) => {
         return res.json()

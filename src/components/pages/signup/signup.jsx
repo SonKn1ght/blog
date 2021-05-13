@@ -1,18 +1,30 @@
 //Dependencies
-import React, {useRef, useState} from "react"
-import {Controller, useForm} from "react-hook-form";
+import React, {useState} from "react"
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom"
+import {onRegistration} from "../../../redux/actions/authorization"
+
 
 //Components
 import {Header} from '../../'
-import {Checkbox} from 'antd';
 
 //Style
 import "./signup.css"
 
 const Signup = () => {
-  const {register, control, handleSubmit, formState: {errors}} = useForm();
-  const submits = (date) => console.log('Это работает', date)
-  const inputPassword = useRef()
+  const history = useHistory()
+
+  const {register, handleSubmit, formState: {errors}} = useForm();
+  const submits = (date) => {
+    onRegistration(date).then(() => {
+      history.push("/");
+    }).catch(() => {
+      alert("Произошла ошибка, такой пользователь уже сущесвует")
+    })
+
+  }
+  const [password, setPassword] = useState()
+  const [checked, setChecked] = useState(false)
   return (
     <>
       <Header/>
@@ -24,24 +36,26 @@ const Signup = () => {
           <label className="signup__field">
             <span>Username</span>
             <input
-              {...register("Username", {
+              name={"Username"}
+              ref={register({
                   required: true,
-                  minLength: 3,
-                  maxLength: 20
+                  minLength:3,
+                  maxLength: 20,
                 }
               )}
               type="text"
               className={`signup__input ${errors.hasOwnProperty("Username") ? "signup__input--err" : ''}`}
               placeholder="Username"/>
             <p
-              style={{color: "red"}}>{errors.hasOwnProperty("Username") ? " From 3 to 20 characters inclusive" : null}</p>
+              style={{color: "red"}}>{errors.hasOwnProperty("Username") ? "From 3 to 20 characters inclusive" : null}</p>
           </label>
           <label className="signup__field">
             <span>Email address</span>
             <input
-              {...register("Email", {
+              name={"Email"}
+              ref={register({
                 required: true,
-                minLength: 10,
+                minLength: 6,
                 pattern: {
                   value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
                   message: '',
@@ -54,58 +68,51 @@ const Signup = () => {
           </label>
           <label className="signup__field">
             <span>Password</span>
-            <input type="password"
-                   {...register("Password", {
-                     required: true,
-                     minLength: 6,
-                     maxLength: 40
-                   })}
-                   className={`signup__input ${errors.hasOwnProperty("Password") ? "signup__input--err" : ''}`}
-                   id={"signup__password"}
-                   placeholder="Password"/>
+            <input
+              onChange={(event) => {
+                setPassword(event.target.value)}}
+              className={`signup__input ${errors.hasOwnProperty("password") ? "signup__input--err" : ''}`}
+              name='password'
+              type="password"
+              placeholder='Password'
+              ref={register({ required: true, minLength: 8, maxLength: 40 })}/>
             <p
-              style={{color: "red"}}>{errors.hasOwnProperty("Password") ? "Your password needs to be at least 6 characters." : null}</p>
+              style={{color: "red"}}>{errors.hasOwnProperty("password") ? "Your password needs to be at least 8 characters." : null}</p>
           </label>
           <label className="signup__field">
             <span>Repeat Password</span>
             <input
-              onChange={(event) => setRepeatPass(event.target.value)}
               type="password"
               className="signup__input"
               placeholder="Password"
-
-              {...register("RepeatPassword", {
+              name={"RepeatPassword"}
+              ref={register({
                 required: true,
                 minLength: 6,
                 maxLength: 40,
-                // validate: (value) => value === passValue
+                validate: (value) => value === password
               })}
-
             />
-            {errors.RepeatPassword && <p style={{color: "red"}}> Passwords must match</p>}
+            {errors.RepeatPassword && <p style={{color: "red"}}>Passwords must match</p>}
           </label>
           <div className="signup__hr"/>
-          <Controller
-            name={"checkbox"}
-            control={control}
-            rules={{required: true}}
-            render={({field: {value, onChange}}) =>
-              <Checkbox
-                checked={value}
-                onChange={(e) => {
-                  onChange(e.target.checked);
-                }}
-                className="signup__checkbox">I agree to the processing of my personal
-                information</Checkbox>}
-          />
+          <label className="signup__checkLabel"
+                 onChange={() => setChecked(prevState => !checked)}
+          >
+            <input
+              className="signup__checkbox"
+              type="checkbox"
+              name='agree'
+              defaultChecked={checked}
+              ref={register({ required: true })}/>
+            <span>I agree to the processing of my personal information</span>
+          </label>
           {
-            errors.hasOwnProperty("checkbox")
-              ?
-              <button className="signup__btn" type="submit" disabled>Create</button>
-              : <button className="signup__btn" type="submit">Create</button>
+            checked ?
+              <button className="signup__btn" type="submit">Create</button>
+              : <button className="signup__btn" type="submit" disabled>Create</button>
           }
           <span className="signup__haveAccount">
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             Already have an account? <a href="#">Sign In.</a>
         </span>
         </form>

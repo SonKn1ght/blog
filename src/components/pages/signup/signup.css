@@ -46,6 +46,10 @@
     color: #262626;
 }
 
+.signup__checkLabel span {
+    padding-left: 20px;
+}
+
 .signup__input {
     padding: 8px 12px;
     background: #FFFFFF;
@@ -65,6 +69,7 @@
 .signup__btn {
     margin-top: 21px;
     height: 40px;
+    cursor: pointer;
 }
 
 .signup__haveAccount {
@@ -72,9 +77,7 @@
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     line-height: 20px;
-
     text-align: center;
-
     color: #8C8C8C;
 }
 

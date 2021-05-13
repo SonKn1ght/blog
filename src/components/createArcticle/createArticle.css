@@ -1,0 +1,112 @@
+.createArticle__container {
+    max-width: 938px;
+    width: 100%;
+    margin: 0 auto;
+    background: #FFFFFF;
+    /* Grey / grey-5 */
+
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    box-shadow: 0px 22px 106px rgba(0, 0, 0, 0.07), 0px 9.19107px 44.2843px rgba(0, 0, 0, 0.0503198), 0px 4.91399px 23.6765px rgba(0, 0, 0, 0.0417275), 0px 2.75474px 13.2728px rgba(0, 0, 0, 0.035), 0px 1.46302px 7.04911px rgba(0, 0, 0, 0.0282725), 0px 0.608796px 2.93329px rgba(0, 0, 0, 0.0196802);
+    border-radius: 6px;
+    margin-top: 34px;
+}
+
+.createArticle__form {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.createArticle__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    color: #262626;
+}
+
+.createArticle__inputLabel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 21px;
+}
+
+.createArticle__input {
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+.createArticle__input::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    color: #BFBFBF;
+}
+
+.createArticle__textarea {
+    padding: 8px 12px;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.createArticle__textarea::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    color: #BFBFBF;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    margin-top: 21px;
+    position: relative;
+    max-width: 500px;
+}
+
+.tags__label {
+    margin-top: 5px;
+}
+
+.tags__input {
+    padding: 8px 12px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.tags__input::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    color: #BFBFBF;
+
+}
+
+.tags__delete {
+    margin-left: 18px;
+    padding: 8px 36px;
+    border: 1px solid #F5222D;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #F5222D;
+    background: none;
+    cursor: pointer;
+}
+
+.tags__add {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 8px 36px;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1890FF;
+    background: none;
+    cursor: pointer;
+}
