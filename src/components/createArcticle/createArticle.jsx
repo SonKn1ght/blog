@@ -9,7 +9,7 @@ import {Space, Spin} from "antd";
 import {createArticle} from "../../redux/actions/editArticle";
 
 
-const CreateArticle = ({}) => {
+const CreateArticle = () => {
   const {register, handleSubmit, errors} = useForm()
   const {tags} = useSelector(state => state.tags)
   const {edit} = useSelector(state => state.oneArticle )
@@ -26,7 +26,7 @@ const CreateArticle = ({}) => {
     return () => {
       dispatch(createArticle())
     }
-  }, []);
+  });
 
   const [value, setValue] = useState('')
   const createTag = (val) => {

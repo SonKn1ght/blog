@@ -1,5 +1,5 @@
 //Dependencies
-import React, {useState} from "react"
+import React from "react"
 import {getOneArticle} from "../../redux/actions";
 import {onfavorite, unFavorite} from "../../redux/actions/favorite";
 import {useDispatch, useSelector} from "react-redux";

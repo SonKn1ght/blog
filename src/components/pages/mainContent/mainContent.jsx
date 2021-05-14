@@ -11,7 +11,7 @@ const MainContent = () => {
   const dispatch = useDispatch()
     useEffect(() => {
       dispatch(getArticle())
-    }, [])
+    }, [dispatch])
   const pageTotal = useSelector(state => state.articleList.articlesCount)
   const currentPage = useSelector(state => state.articleList.currentPage)
   return (

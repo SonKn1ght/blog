@@ -1,7 +1,7 @@
 //Dependencies
 import React, {useState} from "react"
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 import {onRegistration} from "../../../redux/actions/authorization"
 
 
@@ -113,7 +113,7 @@ const Signup = () => {
               : <button className="signup__btn" type="submit" disabled>Create</button>
           }
           <span className="signup__haveAccount">
-            Already have an account? <a href="#">Sign In.</a>
+            Already have an account? <Link to='/signin'>Sign In.</Link>
         </span>
         </form>
       </div>

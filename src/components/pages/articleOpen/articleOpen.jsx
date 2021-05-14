@@ -10,7 +10,6 @@ import {Link} from 'react-router-dom'
 import './articleOpen.css'
 import {useDispatch, useSelector} from "react-redux";
 import {editArticle} from "../../../redux/actions/editArticle";
-import {onfavorite, unFavorite} from "../../../redux/actions/favorite";
 
 
 const ArcticleOpen = () => {
@@ -43,7 +42,7 @@ const ArcticleOpen = () => {
                   <h5 className="arcticle__titles">{title}</h5>
                 </div>
                 {tagList && tagList.map((tag) => {
-                  return <Tag key={`${tag}${new Date}_${username}`} >{tag}</Tag>
+                  return <Tag key={`${tag}${new Date()}_${username}`} >{tag}</Tag>
                 })}
               </div>
               <div className="arcticle__wrapper">

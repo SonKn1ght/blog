@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {onAuthorization} from "../../../redux/actions/authorization";
 import {useHistory} from "react-router";
+import {Link} from "react-router-dom";
 
 
 const Signin = () => {
@@ -53,7 +54,7 @@ const Signin = () => {
           </label>
           <button className="signup__btn" type="submit">Login</button>
           <span className="signup__haveAccount">
-            Don’t have an account? <a href="#"> Sign Up.</a>
+            Don’t have an account? <Link to='/signup'> Sign Up.</Link>
         </span>
         </form>
       </div>
