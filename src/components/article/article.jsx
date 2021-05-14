@@ -1,7 +1,9 @@
 //Dependencies
-import React from "react"
+import React, {useState} from "react"
 import {getOneArticle} from "../../redux/actions";
-
+import {onfavorite, unFavorite} from "../../redux/actions/favorite";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 //Component
 import { Tag } from 'antd';
@@ -12,13 +14,14 @@ import {HeartOutlined} from  '@ant-design/icons'
 
 //Style
 import './article.css'
-import {useDispatch} from "react-redux";
-import {Link} from "react-router-dom";
 
 
-const Article = ({title, description, tagList, slug, author, createdAt, favoritesCount}) => {
+
+
+const Article = ({title, description, tagList, slug, author, createdAt, favoritesCount, favorited}) => {
   const dispatch = useDispatch()
-  // title, description, tagList,createdAt,author
+  const autch = useSelector(state => state.authorization.auth)
+
   const optionsDate = {
       year: 'numeric',
       month: 'long',
@@ -38,13 +41,30 @@ const Article = ({title, description, tagList, slug, author, createdAt, favorite
               }>
               <h5 className="arcticle__titles">{title}</h5>
               </Link>
-              <button className="arcticle__like">
-                <HeartOutlined/>
-                {favoritesCount}
-              </button>
+              {
+                autch ?
+                  <button className={`arcticle__like ${!favorited ? "" : "arcticle__like--active"}`}
+                          onClick={() => {
+                            if(!favorited) {
+                              dispatch(onfavorite(slug))
+                            } else {
+                              dispatch(unFavorite(slug))
+                            }
+                          }}
+                  >
+                    <HeartOutlined/>
+                    {favoritesCount}
+                  </button>
+                  :
+                  <Link to="/signup" className={`arcticle__like ${!favorited ? "" : "arcticle__like--active"}`}>
+                    <HeartOutlined/>
+                    {favoritesCount}
+                  </Link>
+              }
+
             </div>
             {tagList.map((tag) => {
-              return <Tag>{tag}</Tag>
+              return <Tag key={`${tag}${slug}`}>{tag}</Tag>
             })}
           </div>
           <div className="titleUser">

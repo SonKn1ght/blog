@@ -1,6 +1,6 @@
 //Dependencies
 import React from "react"
-import {BrowserRouter as Router, Route } from "react-router-dom"
+import {BrowserRouter as Router, Route, Redirect  } from "react-router-dom"
 import {Provider} from "react-redux";
 import store from "../redux/store";
 
@@ -20,8 +20,9 @@ function App() {
         <Route path='/articles/:slug' component={ArticleOpen} exact/>
         <Route path='/signup' component={Signup} exact/>
         <Route path='/signin' component={Signin} exact/>
-        <Route path='/new-article' component={NewArticle} exact/>
-        <Route path="/profile" component={ProfilePage} exact/>
+        {store.getState().authorization.auth ? <Route path='/new-article' component={NewArticle} exact/> : <Redirect to='/'/> }
+        {store.getState().authorization.auth ? <Route path="/profile" component={ProfilePage} exact/> : <Redirect to='/'/> }
+        {store.getState().authorization.auth ? <Route path="/articles/:slug/edit" component={NewArticle} exact/> : <Redirect to='/'/>}
       </Router>
     </Provider>
   );

@@ -11,7 +11,6 @@ export const editProfile = (date) => {
       },
       body: JSON.stringify(date)
     })).json()
-    console.log(newUserDate)
     dispatch({
       type: "POST/AUTHORIZATION",
       payload:newUserDate.user

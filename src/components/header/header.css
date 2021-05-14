@@ -25,10 +25,18 @@
     padding: 6px 10px;
     background: none;
     border: 1px solid #52C41A;
-    box-sizing: border-box;
     border-radius: 5px;
     font-size: 14px;
     line-height: 22px;
+    color: #52C41A;
+    cursor: pointer;
+}
+
+.userAuth__username {
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
 }
 
 .userAuth__inner {
@@ -41,4 +49,16 @@
     width: 46px;
     height: 46px;
     margin-left: 13px;
+    border-radius: 25px;
+}
+
+.userAuth__logout {
+    padding: 8px 18px;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
 }

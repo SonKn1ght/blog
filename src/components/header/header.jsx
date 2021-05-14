@@ -1,5 +1,5 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
 
 import {Button} from "antd";
@@ -15,6 +15,7 @@ import {logout} from "../../redux/actions/logout";
 
 const Header = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const {username, image, auth} = useSelector(state => state.authorization)
   return (
     <header className="header">
@@ -49,6 +50,7 @@ const Header = () => {
               </Link>
               <button onClick={() => {
                 dispatch(logout())
+                history.push("/")
               }
               } className="userAuth__logout">Log Out
               </button>

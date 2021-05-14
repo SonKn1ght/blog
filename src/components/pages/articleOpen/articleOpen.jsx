@@ -1,21 +1,26 @@
 //Dependencies
-import React from "react";
-
-import {HeartOutlined} from "@ant-design/icons";
+import React, {useState} from "react";
+import {Header, ModalDelete} from "../../";
 import {Space, Spin, Tag} from "antd";
 import avatar from "../../article/avatar.png";
+import {Link} from 'react-router-dom'
 
 //Component
-import {Header} from "../../index";
+
 import './articleOpen.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {editArticle} from "../../../redux/actions/editArticle";
+import {onfavorite, unFavorite} from "../../../redux/actions/favorite";
 
 
 const ArcticleOpen = () => {
   const oneArticle = useSelector(state => state.oneArticle.article)
   const loading = useSelector(state => state.oneArticle.loading)
   const username  = useSelector(state => state.authorization.username)
-  const {author, description, favoritesCount, title, createdAt, body, tagList} = oneArticle
+  const {author, description, title, createdAt, body, tagList} = oneArticle
+  const dispatch = useDispatch()
+
+  const [showModal, setShowModal] = useState(false)
   const optionsDate = {
     year: 'numeric',
     month: 'long',
@@ -36,13 +41,9 @@ const ArcticleOpen = () => {
               <div className="titleBlog">
                 <div className="titleBlog__inner">
                   <h5 className="arcticle__titles">{title}</h5>
-                  <button className="arcticle__like">
-                    <HeartOutlined/>
-                    {favoritesCount}
-                  </button>
                 </div>
                 {tagList && tagList.map((tag) => {
-                  return <Tag>{tag}</Tag>
+                  return <Tag key={`${tag}${new Date}_${username}`} >{tag}</Tag>
                 })}
               </div>
               <div className="arcticle__wrapper">
@@ -58,17 +59,21 @@ const ArcticleOpen = () => {
                   </div>
                 </div>
                 {
-                  username === author.username ?                 <div className="article__btn">
-                    <button className="article__delete">Delete</button>
-                    <button className="article__edit">Edit</button>
+                  username === author.username ? <div className="article__btn">
+                    <button className="article__delete" onClick={() => {
+                      setShowModal(!showModal)
+                    }}>Delete</button>
+                    <Link to={`/articles/${oneArticle.slug}/edit`} onClick={() => {
+                    dispatch(editArticle())}
+                    } className="article__edit">Edit</Link>
                   </div>
                     :null
                 }
-
+                {showModal ? <ModalDelete setShowModal={setShowModal} slug={oneArticle.slug}/> : null}
               </div>
 
             </div>
-            <div className="arcticle__main">
+            <div className="arcticle__main arcticle__open">
               <p className="arcticle__text">
                 {description}
               </p>

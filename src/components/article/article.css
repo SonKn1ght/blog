@@ -77,3 +77,9 @@
 .ant-pagination-options {
     display: none!important;
 }
+
+
+.arcticle__like--active {
+    color: red;
+}
+

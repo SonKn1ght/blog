@@ -34,6 +34,19 @@ const articleList = (state = initialState, action) => {
       loading: true
     }
   }
+
+  if(action.type === "SET/FAVORITE" || action.type === "DELETE/FAVORITE") {
+    const idx = state.articleList.findIndex((item) => {
+      return item.slug === action.payload.slug
+    })
+    const leftArray = state.articleList.slice(0,idx)
+    const rightArray = state.articleList.slice(idx + 1)
+    return {
+      ...state,
+      articleList: [...leftArray,action.payload,...rightArray]
+    }
+  }
+
   return state
 }
 

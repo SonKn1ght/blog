@@ -4,6 +4,7 @@ import './profile.css'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {editProfile} from "../../redux/actions/editProfile";
+import {useHistory} from "react-router";
 
 
 
@@ -11,7 +12,11 @@ const Profile = () => {
   const {register, handleSubmit, formState: {errors}} = useForm()
   const {username, email, image} = useSelector(state => state.authorization)
   const dispatch = useDispatch()
-  const date = (date) => dispatch(editProfile(date))
+  const history = useHistory()
+  const date = (date) => {
+    dispatch(editProfile(date))
+    history.push('/')
+  }
 
   return (
     <div className='profile'>
@@ -62,6 +67,7 @@ const Profile = () => {
                  name='image'
                  defaultValue={image === null || image === 'null' ? "" : image}
                  placeholder={image === null || image === 'null' ? "Avatar image" : image}
+                 ref={register({required:false})}
                  className={`profile__input ${errors.hasOwnProperty("Username") ? "signup__input--err" : ""}`}
           />
         </label>

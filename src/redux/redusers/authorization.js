@@ -14,7 +14,6 @@ const initialState = {
 
 const authorization = (state = initialState,action) => {
   if(action.type === "POST/AUTHORIZATION") {
-    console.log(action)
     localStorage.setItem("bio", action.payload.bio)
     localStorage.setItem("createdAt", action.payload.createdAt)
     localStorage.setItem("email", action.payload.email)
