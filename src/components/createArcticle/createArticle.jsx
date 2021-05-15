@@ -3,10 +3,10 @@ import './createArticle.css'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {addAllTag, addTag, removeAllTag, removeTag} from '../../redux/actions/tags'
-import {useHistory} from "react-router";
 import {sendNewArticle, sendUpdateArticle} from "../../redux/actions/newArticleSend"
 import {Space, Spin} from "antd";
 import {createArticle} from "../../redux/actions/editArticle";
+import {useHistory} from "react-router";
 
 
 const CreateArticle = () => {
@@ -15,7 +15,6 @@ const CreateArticle = () => {
   const {edit} = useSelector(state => state.oneArticle )
   const oneArticle = useSelector(state => state.oneArticle.article)
   const history = useHistory()
-
   const [loading,setLoading] = useState()
   const dispatch = useDispatch()
 
@@ -26,9 +25,10 @@ const CreateArticle = () => {
     return () => {
       dispatch(createArticle())
     }
-  });
+  },[dispatch, edit, oneArticle.tagList]);
 
   const [value, setValue] = useState('')
+
   const createTag = (val) => {
     if (val.length > 0) {
       const tag = {
@@ -53,7 +53,6 @@ const CreateArticle = () => {
     dispatch(removeAllTag())
     history.push('/')
   }
-
 
   return (
     <>
@@ -116,7 +115,6 @@ const CreateArticle = () => {
                                    name={tag.val}
                                    readOnly
                                    value={tag.val}
-                                   onChange={(event) => setValue(event.target.value)}
                                    ref={register({required: false})}
                             />
                             {
@@ -199,7 +197,6 @@ const CreateArticle = () => {
                                    name={tag.val}
                                    readOnly
                                    value={tag.val}
-                                   onChange={(event) => setValue(event.target.value)}
                                    ref={register({required: false})}
                             />
                             {

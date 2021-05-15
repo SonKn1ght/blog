@@ -8,7 +8,9 @@ const initialState = {
   token: localStorage.getItem("token"),
   updatedAt: localStorage.getItem("updatedAt"),
   username: localStorage.getItem("username"),
-  auth:localStorage.getItem("auth")
+  auth:localStorage.getItem("auth"),
+  errorReg:false,
+  errorAuth:false
 }
 
 
@@ -25,7 +27,9 @@ const authorization = (state = initialState,action) => {
     localStorage.setItem("auth", true)
     return {
       ...action.payload,
-      auth: true
+      auth: true,
+      errorReg:false,
+      errorAuth:false
     }
   }
 
@@ -40,7 +44,23 @@ const authorization = (state = initialState,action) => {
     localStorage.clear("username")
     return {
       ...initialState,
-      auth: false
+      auth: false,
+      errorReg:false,
+      errorAuth:false
+    }
+  }
+
+  if(action.type === "REG/ERROR") {
+    return {
+      ...state,
+      errorReg:true
+    }
+  }
+
+  if(action.type === "AUTHORIZATION/ERROR") {
+    return {
+      ...state,
+      errorAuth:true
     }
   }
 

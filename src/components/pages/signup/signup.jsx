@@ -1,7 +1,7 @@
 //Dependencies
 import React, {useState} from "react"
-import { useForm } from "react-hook-form";
-import {Link, useHistory} from "react-router-dom"
+import {useForm} from "react-hook-form";
+import {Link} from "react-router-dom"
 import {onRegistration} from "../../../redux/actions/authorization"
 
 
@@ -10,21 +10,18 @@ import {Header} from '../../'
 
 //Style
 import "./signup.css"
+import {useDispatch, useSelector} from "react-redux";
 
 const Signup = () => {
-  const history = useHistory()
-
   const {register, handleSubmit, formState: {errors}} = useForm();
-  const submits = (date) => {
-    onRegistration(date).then(() => {
-      history.push("/");
-    }).catch(() => {
-      alert("Произошла ошибка, такой пользователь уже сущесвует")
-    })
-
-  }
+  const {errorReg} = useSelector(state => state.authorization)
   const [password, setPassword] = useState()
   const [checked, setChecked] = useState(false)
+  const dispatch = useDispatch()
+  const submits = (date) => {
+    dispatch(onRegistration(date))
+  }
+
   return (
     <>
       <Header/>
@@ -33,13 +30,14 @@ const Signup = () => {
           <h2 className="signup__label">
             Create new account
           </h2>
+          {errorReg && "Такой пользователь уже существует"}
           <label className="signup__field">
             <span>Username</span>
             <input
               name={"Username"}
               ref={register({
                   required: true,
-                  minLength:3,
+                  minLength: 3,
                   maxLength: 20,
                 }
               )}
@@ -70,12 +68,13 @@ const Signup = () => {
             <span>Password</span>
             <input
               onChange={(event) => {
-                setPassword(event.target.value)}}
+                setPassword(event.target.value)
+              }}
               className={`signup__input ${errors.hasOwnProperty("password") ? "signup__input--err" : ''}`}
               name='password'
               type="password"
               placeholder='Password'
-              ref={register({ required: true, minLength: 8, maxLength: 40 })}/>
+              ref={register({required: true, minLength: 8, maxLength: 40})}/>
             <p
               style={{color: "red"}}>{errors.hasOwnProperty("password") ? "Your password needs to be at least 8 characters." : null}</p>
           </label>
@@ -104,7 +103,7 @@ const Signup = () => {
               type="checkbox"
               name='agree'
               defaultChecked={checked}
-              ref={register({ required: true })}/>
+              ref={register({required: true})}/>
             <span>I agree to the processing of my personal information</span>
           </label>
           {

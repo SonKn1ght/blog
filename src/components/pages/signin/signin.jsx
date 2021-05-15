@@ -1,21 +1,21 @@
 import React from "react"
 import Header from "../../header/header";
 import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {onAuthorization} from "../../../redux/actions/authorization";
-import {useHistory} from "react-router";
 import {Link} from "react-router-dom";
 
 
 const Signin = () => {
   const dispatch = useDispatch()
   const {register, handleSubmit, formState: {errors}} = useForm();
-  const history = useHistory()
+
+  const {errorAuth} = useSelector(state => state.authorization)
 
   const submits = (date) => {
     dispatch(onAuthorization(date))
-    history.push('/')
   }
+
   return (
     <>
       <Header/>
@@ -24,6 +24,7 @@ const Signin = () => {
           <h2 className="signup__label">
             Sign In
           </h2>
+          {errorAuth && "Неверный логин или пароль"}
           <label className="signup__field">
             <span>Email address</span>
             <input

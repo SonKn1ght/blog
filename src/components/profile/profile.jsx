@@ -4,18 +4,14 @@ import './profile.css'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {editProfile} from "../../redux/actions/editProfile";
-import {useHistory} from "react-router";
-
 
 
 const Profile = () => {
   const {register, handleSubmit, formState: {errors}} = useForm()
   const {username, email, image} = useSelector(state => state.authorization)
   const dispatch = useDispatch()
-  const history = useHistory()
   const date = (date) => {
     dispatch(editProfile(date))
-    history.push('/')
   }
 
   return (
